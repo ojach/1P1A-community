@@ -31,7 +31,7 @@ Choose the script configuration that fits your application structure:
 
 ```html
 <!-- Drop this in your <head> -->
-<script src="[https://ojapp.app/js/ojapp_1p1a.js](https://ojapp.app/js/ojapp_1p1a.js)"></script>
+<script src="https://ojapp.app/js/ojapp_1p1a.js"></script>
 
 <!-- Optional: Customize title and icon -->
 <meta name="ojapp:title" content="My Custom Tool">
@@ -39,7 +39,7 @@ Choose the script configuration that fits your application structure:
 ```
 ### 2. 1S1A: One Site One AppMake your entire domain act as a single unified PWA.HTML<!-- Drop this in your <head> -->
 ```html
-<script src="[https://ojapp.app/js/ojapp_1s1a.js](https://ojapp.app/js/ojapp_1s1a.js)"></script>
+<script src="https://ojapp.app/js/ojapp_1s1a.js"></script>
 ```
 ### 3. 1G1A: One Group One AppGroup a specific directory hub (e.g., /dashboard/, /tools/, /docs/) into an isolated PWA under a single domain.HTML<!-- Configure scope & start URL for the group -->
 ```html
@@ -48,8 +48,25 @@ Choose the script configuration that fits your application structure:
 <meta name="ojapp:scope" content="/dashboard/">
 
 <!-- Load the OJapp PWA handler -->
-<script src="[https://ojapp.app/js/ojapp_1s1a.js](https://ojapp.app/js/ojapp_1s1a.js)"></script>
+<script src="https://ojapp.app/js/ojapp_1s1a.js"></script>
 ```
-With 1G1A, you can run multiple independent apps under a single root domain without setting up separate build pipelines or managing static manifest files for each individual sub-route.🛠️ Metadata ReferenceMeta TagDescriptionDefault / Fallbackojapp:titleSpecifies the app title for home screen displayPage <title>ojapp:iconURL for the application iconSite favicon / Default iconojapp:scopeSets the explicit navigation scope for the PWACurrent page / directoryojapp:start-urlSets the launch URL when opened from home screenCurrent locationojapp:idUnique identifier for the Web App ManifestDynamic page path🤝 Community & FeedbackIf you have questions, edge cases, or feature requests regarding 1P1A, feel free to open an issue or start a thread in this community repository!
-- Website / Utilities: OJapp Hub
-- Developer: OJapp / おじゃち
+With 1G1A, you can run multiple independent apps under a single root domain without setting up separate build pipelines or managing static manifest files for each individual sub-route.
+
+## 🛠️ Metadata Reference
+
+| Meta Tag | Description | Default / Fallback |
+| :--- | :--- | :--- |
+| `ojapp:title` | Specifies the app title for home screen display | Page `<title>` |
+| `ojapp:icon` | URL for the application icon | Site favicon / Default icon |
+| `ojapp:scope` | Sets the explicit navigation scope for the PWA | Current page / directory |
+| `ojapp:start-url` | Sets the launch URL when opened from home screen | Current location |
+| `ojapp:id` | Unique identifier for the Web App Manifest | Dynamic page path |
+
+---
+
+## 🤝 Community & Feedback
+
+If you have questions, edge cases, or feature requests regarding 1P1A, feel free to open an issue or start a thread in this community repository!
+
+- **Website / Utilities:** [OJapp Hub](https://ojapp.app)
+- **Developer:** OJapp / おじゃち
