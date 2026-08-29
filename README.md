@@ -69,4 +69,4 @@ With 1G1A, you can run multiple independent apps under a single root domain with
 If you have questions, edge cases, or feature requests regarding 1P1A, feel free to open an issue or start a thread in this community repository!
 
 - **Website / Utilities:** [OJapp 1P1A](https://ojapp.app/one-page-one-app/en/)
-- **Developer:** OJapp / おじゃち
+- **Developer:** OJapp / Ojach
