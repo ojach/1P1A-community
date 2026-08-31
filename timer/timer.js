@@ -9,6 +9,7 @@
     modeInputs: [...document.querySelectorAll('input[name="mode"]')],
     seconds: document.querySelector("#seconds"),
     start: document.querySelector("#startButton"),
+    urlNote: document.querySelector("#urlNote"),
     pause: document.querySelector("#pauseButton"),
     reset: document.querySelector("#resetButton"),
     display: document.querySelector("#timerDisplay"),
@@ -17,6 +18,7 @@
   };
 
   const defaults = { time: 5, mode: "down", seconds: true };
+  const initialNavigationSearch = location.search;
   let config = readConfig();
   let startedAt = 0;
   let pausedAt = 0;
@@ -52,6 +54,23 @@
     url.searchParams.set("seconds", nextConfig.seconds ? "on" : "off");
     history.replaceState(null, "", url);
     window.ojappRefreshManifest?.();
+    return url;
+  }
+
+  function canonicalSearch(nextConfig) {
+    const params = new URLSearchParams();
+    params.set("time", String(nextConfig.time));
+    params.set("mode", nextConfig.mode);
+    params.set("seconds", nextConfig.seconds ? "on" : "off");
+    return `?${params.toString()}`;
+  }
+
+  function updatePrimaryAction() {
+    const isCommitted = canonicalSearch(config) === initialNavigationSearch;
+    elements.start.textContent = isCommitted ? "スタート" : "この設定にする";
+    elements.urlNote.textContent = isCommitted
+      ? "このURLをホーム画面に追加できます"
+      : "設定後、クエリ入りURLへ移動します";
   }
 
   function syncForm() {
@@ -60,12 +79,14 @@
     elements.modeInputs.forEach((input) => { input.checked = input.value === config.mode; });
     elements.seconds.checked = config.seconds;
     writeUrl(config);
+    updatePrimaryAction();
   }
 
   function onSettingChange() {
     config = currentFormConfig();
     elements.minutesOutput.textContent = `${config.time}分`;
     writeUrl(config);
+    updatePrimaryAction();
   }
 
   function initializeAudio() {
@@ -113,7 +134,13 @@
 
   function startTimer() {
     config = currentFormConfig();
-    writeUrl(config);
+    const configuredUrl = writeUrl(config);
+
+    if (configuredUrl.search !== initialNavigationSearch) {
+      location.assign(configuredUrl.href);
+      return;
+    }
+
     initializeAudio();
     startedAt = Date.now();
     pausedAt = 0;
