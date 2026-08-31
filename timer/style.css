@@ -101,7 +101,7 @@ legend { margin-bottom: 12px; }
   line-height: .9;
   white-space: nowrap;
 }
-.timer-display.minutes-only { font-size: clamp(8rem, 42vw, 13rem); }
+.timer-display.seconds-only { font-size: clamp(8rem, 42vw, 13rem); }
 .timer-status { min-height: 1.5em; margin: 24px 0 28px; color: #2bb7ff; font-weight: 800; }
 .timer-actions { display: grid; justify-items: center; gap: 18px; }
 .text-button { padding: 8px 16px; border: 0; color: #8fa0b7; background: transparent; cursor: pointer; }

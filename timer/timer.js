@@ -98,16 +98,14 @@
 
   function formatTime(milliseconds) {
     const safeMs = Math.max(0, milliseconds);
-    if (!config.seconds) {
-      const minutes = config.mode === "down"
-        ? Math.ceil(safeMs / 60000)
-        : Math.floor(safeMs / 60000);
-      return String(minutes).padStart(2, "0");
-    }
-
     const totalSeconds = config.mode === "down"
       ? Math.ceil(safeMs / 1000)
       : Math.floor(safeMs / 1000);
+
+    if (config.seconds) {
+      return String(totalSeconds);
+    }
+
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
     return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
@@ -150,7 +148,7 @@
     document.body.classList.remove("finished");
     elements.settingsView.hidden = true;
     elements.timerView.hidden = false;
-    elements.display.classList.toggle("minutes-only", !config.seconds);
+    elements.display.classList.toggle("seconds-only", config.seconds);
     elements.modeLabel.textContent = `${config.time}分・カウント${config.mode === "down" ? "DOWN" : "UP"}`;
     elements.status.textContent = "計測中";
     elements.pause.textContent = "一時停止";
