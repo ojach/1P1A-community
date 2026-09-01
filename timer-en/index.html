@@ -1,1 +1,73 @@
-test
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#08111f">
+  <meta name="ojapp:title" content="My Timer">
+  <meta name="ojapp:icon" content="./icon.png">
+  <meta name="ojapp:query" content="true">
+  <link rel="apple-touch-icon" href="./icon.png">
+  <link rel="icon" href="./icon.png">
+  <link rel="stylesheet" href="./style.css">
+  <title>My Timer | OJapp Free</title>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="app-header">
+      <span class="brand">OJapp Free</span>
+      <h1>My Timer</h1>
+    </header>
+
+    <section id="settingsView" class="panel" aria-labelledby="settingsTitle">
+      <h2 id="settingsTitle">Timer Settings</h2>
+
+      <div class="setting-block">
+        <div class="setting-heading">
+          <label for="minutes">Duration</label>
+          <output id="minutesOutput" for="minutes">5 min</output>
+        </div>
+        <input id="minutes" type="range" min="1" max="60" step="1" value="5">
+        <div class="range-labels" aria-hidden="true"><span>1 min</span><span>60 min</span></div>
+      </div>
+
+      <fieldset class="setting-block">
+        <legend>Count Direction</legend>
+        <div class="segmented">
+          <input id="modeDown" type="radio" name="mode" value="down" checked>
+          <label for="modeDown">COUNT DOWN</label>
+          <input id="modeUp" type="radio" name="mode" value="up">
+          <label for="modeUp">COUNT UP</label>
+        </div>
+      </fieldset>
+
+      <div class="setting-block switch-row">
+        <div>
+          <label for="seconds">Show Total Seconds</label>
+          <p>Turn off to use min:sec format</p>
+        </div>
+        <label class="switch">
+          <input id="seconds" type="checkbox" checked>
+          <span aria-hidden="true"></span>
+        </label>
+      </div>
+
+      <button id="startButton" class="primary-button" type="button">Use These Settings</button>
+      <p id="urlNote" class="url-note">Confirm to open your configured URL</p>
+    </section>
+
+    <section id="timerView" class="timer-view" aria-live="polite" hidden>
+      <p id="timerMode" class="timer-mode">5 min · COUNT DOWN</p>
+      <div id="timerDisplay" class="timer-display">05:00</div>
+      <p id="timerStatus" class="timer-status">Running</p>
+      <div class="timer-actions">
+        <button id="pauseButton" class="secondary-button" type="button">Pause</button>
+        <button id="resetButton" class="text-button" type="button">Reset</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="../ojapp.js"></script>
+  <script src="./timer.js"></script>
+</body>
+</html>
