@@ -8,6 +8,7 @@
     minutesOutput: document.querySelector("#minutesOutput"),
     modeInputs: [...document.querySelectorAll('input[name="mode"]')],
     seconds: document.querySelector("#seconds"),
+    iconInputs: [...document.querySelectorAll('input[name="icon"]')],
     start: document.querySelector("#startButton"),
     urlNote: document.querySelector("#urlNote"),
     pause: document.querySelector("#pauseButton"),
@@ -17,9 +18,10 @@
     status: document.querySelector("#timerStatus")
   };
 
-  const defaults = { time: 5, mode: "down", seconds: true };
-  const initialNavigationSearch = location.search;
-  let config = readConfig();
+  const iconChoices = new Set(["blue", "red", "green", "purple"]);
+  const defaults = { time: 5, mode: "down", seconds: true, icon: "blue" };
+  const initialNavigationConfig = readConfig();
+  let config = { ...initialNavigationConfig };
   let startedAt = 0;
   let pausedAt = 0;
   let pausedDuration = 0;
@@ -34,7 +36,8 @@
     return {
       time: Number.isFinite(parsedTime) ? Math.min(60, Math.max(1, parsedTime)) : defaults.time,
       mode: params.get("mode") === "up" ? "up" : defaults.mode,
-      seconds: params.get("seconds") !== "off"
+      seconds: params.get("seconds") !== "off",
+      icon: iconChoices.has(params.get("icon")) ? params.get("icon") : defaults.icon
     };
   }
 
@@ -42,7 +45,8 @@
     return {
       time: Number(elements.minutes.value),
       mode: elements.modeInputs.find((input) => input.checked)?.value || defaults.mode,
-      seconds: elements.seconds.checked
+      seconds: elements.seconds.checked,
+      icon: elements.iconInputs.find((input) => input.checked)?.value || defaults.icon
     };
   }
 
@@ -52,6 +56,7 @@
     url.searchParams.set("time", String(nextConfig.time));
     url.searchParams.set("mode", nextConfig.mode);
     url.searchParams.set("seconds", nextConfig.seconds ? "on" : "off");
+    url.searchParams.set("icon", nextConfig.icon);
     history.replaceState(null, "", url);
     window.ojappRefreshManifest?.();
     return url;
@@ -62,11 +67,16 @@
     params.set("time", String(nextConfig.time));
     params.set("mode", nextConfig.mode);
     params.set("seconds", nextConfig.seconds ? "on" : "off");
+    params.set("icon", nextConfig.icon);
     return `?${params.toString()}`;
   }
 
+  function isSameConfig(first, second) {
+    return canonicalSearch(first) === canonicalSearch(second);
+  }
+
   function updatePrimaryAction() {
-    const isCommitted = canonicalSearch(config) === initialNavigationSearch;
+    const isCommitted = isSameConfig(config, initialNavigationConfig);
     elements.start.textContent = isCommitted ? "スタート" : "この設定にする";
     elements.urlNote.textContent = isCommitted
       ? "このURLをホーム画面に追加できます"
@@ -78,6 +88,7 @@
     elements.minutesOutput.textContent = `${config.time}分`;
     elements.modeInputs.forEach((input) => { input.checked = input.value === config.mode; });
     elements.seconds.checked = config.seconds;
+    elements.iconInputs.forEach((input) => { input.checked = input.value === config.icon; });
     writeUrl(config);
     updatePrimaryAction();
   }
@@ -134,7 +145,7 @@
     config = currentFormConfig();
     const configuredUrl = writeUrl(config);
 
-    if (configuredUrl.search !== initialNavigationSearch) {
+    if (!isSameConfig(config, initialNavigationConfig)) {
       location.assign(configuredUrl.href);
       return;
     }
@@ -215,6 +226,7 @@
   elements.minutes.addEventListener("input", onSettingChange);
   elements.modeInputs.forEach((input) => input.addEventListener("change", onSettingChange));
   elements.seconds.addEventListener("change", onSettingChange);
+  elements.iconInputs.forEach((input) => input.addEventListener("change", onSettingChange));
   elements.start.addEventListener("click", startTimer);
   elements.pause.addEventListener("click", togglePause);
   elements.reset.addEventListener("click", resetTimer);
