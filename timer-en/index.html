@@ -5,10 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#08111f">
   <meta name="ojapp:title" content="My Timer">
-  <meta name="ojapp:icon" content="./icon.png">
+  <meta id="ojappIconMeta" name="ojapp:icon" content="./icons/blue.png">
   <meta name="ojapp:query" content="true">
-  <link rel="apple-touch-icon" href="./icon.png">
-  <link rel="icon" href="./icon.png">
+  <link id="appleTouchIcon" rel="apple-touch-icon" href="./icons/blue.png">
+  <link id="favicon" rel="icon" href="./icons/blue.png">
+  <script>
+    (() => {
+      const choices = new Set(["blue", "red", "green", "purple"]);
+      const requested = new URLSearchParams(location.search).get("icon");
+      const icon = choices.has(requested) ? requested : "blue";
+      const source = `./icons/${icon}.png`;
+      document.querySelector("#ojappIconMeta").content = source;
+      document.querySelector("#appleTouchIcon").href = source;
+      document.querySelector("#favicon").href = source;
+    })();
+  </script>
   <link rel="stylesheet" href="./style.css">
   <title>My Timer | OJapp Free</title>
 </head>
@@ -52,6 +63,20 @@
         </label>
       </div>
 
+      <fieldset class="setting-block">
+        <legend>App Icon</legend>
+        <div class="icon-options">
+          <input id="iconBlue" type="radio" name="icon" value="blue" checked>
+          <label for="iconBlue"><img src="./icons/blue.png" alt=""><span>Blue</span></label>
+          <input id="iconRed" type="radio" name="icon" value="red">
+          <label for="iconRed"><img src="./icons/red.png" alt=""><span>Red</span></label>
+          <input id="iconGreen" type="radio" name="icon" value="green">
+          <label for="iconGreen"><img src="./icons/green.png" alt=""><span>Green</span></label>
+          <input id="iconPurple" type="radio" name="icon" value="purple">
+          <label for="iconPurple"><img src="./icons/purple.png" alt=""><span>Purple</span></label>
+        </div>
+      </fieldset>
+
       <button id="startButton" class="primary-button" type="button">Use These Settings</button>
       <p id="urlNote" class="url-note">Confirm to open your configured URL</p>
     </section>
@@ -67,7 +92,7 @@
     </section>
   </main>
 
-  <script src="https://ojapp.app/js/ojapp_1p1a.js"></script>
+  <script src="../ojapp.js"></script>
   <script src="./timer.js"></script>
 </body>
 </html>
