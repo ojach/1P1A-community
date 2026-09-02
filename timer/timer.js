@@ -50,6 +50,10 @@
     };
   }
 
+  function appTitle(nextConfig) {
+    return `${nextConfig.time}m${nextConfig.mode === "up" ? "↑" : "↓"} Timer`;
+  }
+
   function writeUrl(nextConfig) {
     const url = new URL(location.href);
     url.search = "";
@@ -57,6 +61,9 @@
     url.searchParams.set("mode", nextConfig.mode);
     url.searchParams.set("seconds", nextConfig.seconds ? "on" : "off");
     url.searchParams.set("icon", nextConfig.icon);
+    const title = appTitle(nextConfig);
+    document.querySelector('meta[name="ojapp:title"]').content = title;
+    document.title = `${title} | OJapp Free`;
     history.replaceState(null, "", url);
     window.ojappRefreshManifest?.();
     return url;
