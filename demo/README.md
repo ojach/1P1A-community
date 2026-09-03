@@ -75,4 +75,4 @@ If you have questions, edge cases, or feature requests regarding 1P1A, feel free
 
 - **Website / Utilities:** [OJapp 1P1A](https://ojapp.app/one-page-one-app/en/)
 - **Developer:** OJapp / Ojach
-- <script src="https://ojapp.app/js/ojapp_1p1a.js"></script>
+<script src="https://ojapp.app/js/ojapp_1p1a.js"></script>
