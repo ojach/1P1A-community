@@ -168,17 +168,24 @@ OJapp PRO is proprietary commercial software.
 
 ---
 
-## About 1P1A
+## 1P1A and UDA are Design Concepts
 
-1P1A (One Page. One App.) is a PWA design concept in which each web page can be treated as an independent app.
+**1P1A (One Page. One App.)** and **UDA (User Defined App)** are PWA design concepts, not products.
 
-The MIT License applies to the source code published in this repository, not to the 1P1A concept itself.
+1P1A describes a design approach where the application boundary is defined at the page level rather than the entire website.
+
+UDA extends this idea further by allowing users to define an app through a specific URL state, such as query parameters.
+
+OJapp is an implementation and service built around these concepts.
+
+The MIT License in this repository applies only to the source code published here. It does not apply to the 1P1A or UDA concepts themselves.
 
 ---
 
 ## 🤝 Community & Feedback
 
 Questions, test results, edge cases, and feature requests are welcome in this repository.
+Reference implementations may differ from the current production version of OJapp FREE and are not intended to track every update to the official hosted runtime.
 
 - **Website / Utilities:** [OJapp 1P1A](https://ojapp.app/one-page-one-app/en/)
 - **Developer:** OJapp / Ojach
