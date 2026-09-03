@@ -138,6 +138,44 @@ OJapp includes the query in the generated `id`, `start_url`, and `scope`. Chrome
 
 ---
 
+## OJapp FREE
+
+OJapp FREE provides a simple way to implement the 1P1A (One Page. One App.) and 1S1A (One Site. One App.) PWA design patterns.
+
+For normal use, OJapp FREE is provided through the official hosted scripts at:
+
+https://ojapp.app/
+
+The production OJapp FREE runtime is not distributed as a JavaScript file from this repository.
+
+Reference source code may be provided in this repository as `.txt` files for learning, research, modification, and independent implementation.
+
+If you simply want to use OJapp FREE, please use the official hosted script described in the documentation.
+
+---
+
+## License
+
+Unless otherwise noted, source code contained in this repository is licensed under the MIT License.
+
+See the `LICENSE` file for details.
+
+The MIT License in this repository applies only to source code actually published in this repository.
+
+The hosted OJapp FREE runtime provided from `ojapp.app` and OJapp PRO are separate from this repository and are not covered by this repository's MIT License.
+
+OJapp PRO is proprietary commercial software.
+
+---
+
+## About 1P1A
+
+1P1A (One Page. One App.) is a PWA design concept in which each web page can be treated as an independent app.
+
+The MIT License applies to the source code published in this repository, not to the 1P1A concept itself.
+
+---
+
 ## 🤝 Community & Feedback
 
 Questions, test results, edge cases, and feature requests are welcome in this repository.
