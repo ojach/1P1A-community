@@ -1,3 +1,4 @@
+<meta id="ojappIconMeta" name="ojapp:icon" content="./icons/blue.png">
 <link id="appleTouchIcon" rel="apple-touch-icon" href="./icons/IMG_2147.png">
 <link id="favicon" rel="icon" href="./icons/IMG_2147.png">
 <script src="https://ojapp.app/js/ojapp_1p1a.js"></script>
