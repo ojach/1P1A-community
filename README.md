@@ -16,6 +16,7 @@ By injecting a lightweight script into your page's `<head>`, 1P1A dynamically co
 
 - **Zero Build Step & Zero Backend:** Works instantly on static hosts like Cloudflare Pages, GitHub Pages, Vercel, and traditional web servers.
 - **Dynamic Data URL Manifests:** Generates valid Web App Manifests in real-time on the client side.
+- **Query Parameter Handling:** Preserves or appends unique query strings to scope and start URLs for granular instance isolation.
 - **Granular Scope Management:** Support for page-level, group-level, and site-wide PWA behaviors.
 - **Customizable Meta Tags:** Override app titles, start URLs, background colors, display modes, and icons without modifying server files.
 - **Pure Client-Side Execution:** Fully functional without user registration or external API dependencies.
@@ -27,11 +28,14 @@ By injecting a lightweight script into your page's `<head>`, 1P1A dynamically co
 Choose the script configuration that fits your application structure:
 
 ### 1. 1P1A: One Page One App
-*Make a single, specific page a standalone app on the user's home screen.*
+*Make a single, specific page or unique URL instance a standalone app on the user's home screen.*
 
 ```html
 <!-- Drop this in your <head> -->
-<script src="https://ojapp.app/js/ojapp_1p1a.js"></script>
+<script src="[https://ojapp.app/js/ojapp_1p1a.js](https://ojapp.app/js/ojapp_1p1a.js)"></script>
+
+<!-- Enable query parameters handling for isolated scopes -->
+<meta name="ojapp:query" content="true">
 
 <!-- Optional: Customize title and icon -->
 <meta name="ojapp:title" content="My Custom Tool">
@@ -58,9 +62,17 @@ With 1G1A, you can run multiple independent apps under a single root domain with
 | :--- | :--- | :--- |
 | `ojapp:title` | Specifies the app title for home screen display | Page `<title>` |
 | `ojapp:icon` | URL for the application icon | Site favicon / Default icon |
+| `ojapp:query` | Enables unique query parameters in `scope` and `start_url` (`"true"` / `"false"`) | `false` |
 | `ojapp:scope` | Sets the explicit navigation scope for the PWA | Current page / directory |
 | `ojapp:start-url` | Sets the launch URL when opened from home screen | Current location |
 | `ojapp:id` | Unique identifier for the Web App Manifest | Dynamic page path |
+
+---
+
+## 📱 Platform Behavior & OS Nuances
+
+- **iOS (Safari):** Full support for query parameters in `scope` and `start_url`. Setting `ojapp:query` to `"true"` allows multiple unique pages with parameters (e.g., `?id=1` and `?id=2`) to be installed as completely separate home screen instances.
+- **Android (Chrome):** Chrome currently strips query parameters from the manifest `scope` property. While dynamic manifests and 1P1A scripts work perfectly for basic PWA installation, parameter-based scope isolation is consolidated into a single application instance on Android devices.
 
 ---
 
@@ -70,3 +82,4 @@ If you have questions, edge cases, or feature requests regarding 1P1A, feel free
 
 - **Website / Utilities:** [OJapp 1P1A](https://ojapp.app/one-page-one-app/en/)
 - **Developer:** OJapp / Ojach
+
