@@ -1,7 +1,7 @@
-<meta id="ojappIconMeta" name="ojapp:icon" content="./IMG_2147.png">
-<link id="appleTouchIcon" rel="apple-touch-icon" href="./IMG_2147.png">
-<link id="favicon" rel="icon" href="./IMG_2147.png">
-<script src="https://ojapp.app/js/ojapp_1p1a.js"></script>
+<meta id="ojappIconMeta" name="ojapp:icon" content="./tips-20260903-195904.webp">
+<link id="appleTouchIcon" rel="apple-touch-icon" href="./tips-20260903-195904.webp">
+<link id="favicon" rel="icon" href="./tips-20260903-195904.webp">
+
 
 # 1P1A (One Page One App) & OJapp Dynamic PWA Suite
 
@@ -75,3 +75,4 @@ If you have questions, edge cases, or feature requests regarding 1P1A, feel free
 
 - **Website / Utilities:** [OJapp 1P1A](https://ojapp.app/one-page-one-app/en/)
 - **Developer:** OJapp / Ojach
+- <script src="https://ojapp.app/js/ojapp_1p1a.js"></script>
