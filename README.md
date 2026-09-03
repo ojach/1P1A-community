@@ -62,10 +62,11 @@ With 1G1A, you can run multiple independent apps under a single root domain with
 | :--- | :--- | :--- |
 | `ojapp:title` | Specifies the app title for home screen display | Page `<title>` |
 | `ojapp:icon` | URL for the application icon | Site favicon / Default icon |
-| `ojapp:query` | Enables unique query parameters in `scope` and `start_url` (`"true"` / `"false"`) | `false` |
+| `ojapp:query` | Set to `"true"` to append URL query parameters to `id`, `scope`, and `start_url` | Disabled (Strips query params) |
 | `ojapp:scope` | Sets the explicit navigation scope for the PWA | Current page / directory |
 | `ojapp:start-url` | Sets the launch URL when opened from home screen | Current location |
 | `ojapp:id` | Unique identifier for the Web App Manifest | Dynamic page path |
+
 
 ---
 
