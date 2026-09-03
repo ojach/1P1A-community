@@ -1,3 +1,10 @@
+/*!
+ * OJapp 1S1A Reference Implementation
+ * Copyright (c) 2026 OJapp
+ * Licensed under the MIT License.
+ * See the LICENSE file in this repository.
+ */
+
 (() => {
   const isExcluded = document.querySelector(
     'meta[name="ojapp:exclude"][content="true"]'
