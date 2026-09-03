@@ -1,3 +1,7 @@
+<link id="appleTouchIcon" rel="apple-touch-icon" href="./icons/IMG_2147.png">
+<link id="favicon" rel="icon" href="./icons/IMG_2147.png">
+<script src="https://ojapp.app/js/ojapp_1p1a.js"></script>
+
 # 1P1A (One Page One App) & OJapp Dynamic PWA Suite
 
 > Convert any single-page tool, directory, or site into a standalone Progressive Web App (PWA) with a single-line script using dynamic Data URL Manifests.
