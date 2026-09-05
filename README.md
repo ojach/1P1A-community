@@ -8,7 +8,7 @@
 
 **1P1A (One Page One App)** is a client-side PWA approach that removes the need to create and maintain a static `manifest.json` file for every page or tool.
 
-Add an OJapp script to the page `<head>`, and it dynamically generates a Web App Manifest as a `data:application/manifest+json` URL. Depending on the selected mode, visitors can add an individual page, a directory group, or an entire site to their home screen with its own app name, icon, identity, start URL, and navigation scope.
+Add an OJapp script to the page `<head>`, and it dynamically generates a Web App Manifest as a `data:application/manifest+json` URL. Depending on the selected mode, visitors can add an individual page, a directory group, or an entire site to their home screen with its own app name, description, icon, identity, start URL, navigation scope, and install presentation.
 
 The core scripts require no build step, user registration, external API, or server-side manifest generation.
 
@@ -20,7 +20,8 @@ The core scripts require no build step, user registration, external API, or serv
 - **Dynamic Data URL Manifests:** Generates the Web App Manifest in the browser at runtime.
 - **Three App Structures:** Supports page-level (1P1A), directory-level (1G1A), and site-wide (1S1A) apps.
 - **Optional Query Handling:** Adds the current query string to `id`, `start_url`, and `scope` when enabled.
-- **Custom Metadata:** Configure the app title, icon, identity, start URL, and navigation scope with meta tags.
+- **Custom Metadata:** Configure the app title, description, icon, identity, start URL, and navigation scope with meta tags.
+- **Install Presentation:** Add a dedicated install description and one or multiple screenshots (up to five) without maintaining a static Manifest.
 - **Pure Client-Side Execution:** The Free scripts work without user accounts or external API dependencies.
 
 ---
@@ -98,12 +99,65 @@ If your page creates or changes the query after the initial load, navigate to or
 
 ---
 
+## 🖼️ Install Presentation
+
+OJapp can customize the description and screenshots shown in supported browser install interfaces.
+
+### Install Description
+
+Use `ojapp:description` when the install interface needs different copy from the page's search description.
+
+```html
+<meta
+  name="ojapp:description"
+  content="Install this tool for quick access from your home screen."
+>
+```
+
+OJapp uses the following priority:
+
+1. `ojapp:description`
+2. Standard `<meta name="description">`
+3. No Manifest `description` when neither exists
+
+This keeps search-oriented page copy separate from install-oriented messaging.
+
+### One Screenshot
+
+Use the original unnumbered tag for a single image.
+
+```html
+<meta
+  name="ojapp:screenshot"
+  content="/images/install.png"
+>
+```
+
+### Multiple Screenshots
+
+Use numbered tags to add up to five images.
+
+```html
+<meta name="ojapp:screenshot-1" content="/images/install-1.png">
+<meta name="ojapp:screenshot-2" content="/images/install-2.png">
+<meta name="ojapp:screenshot-3" content="/images/install-3.png">
+```
+
+If at least one numbered screenshot tag is present, the numbered set takes priority and the unnumbered `ojapp:screenshot` tag is ignored.
+
+All screenshots in the set should use the same aspect ratio. A **1:1 square image** is recommended because it remains easy to view in both desktop and mobile install interfaces. OJapp assigns the selected screenshots to `wide` on desktop and `narrow` on Android; the final layout is controlled by the browser.
+
+---
+
 ## 🛠️ Metadata Reference
 
 | Meta Tag | Applies To | Description | Default / Fallback |
 | :--- | :--- | :--- | :--- |
 | `ojapp:title` | 1P1A / 1S1A | Sets the app name | 1P1A: page `<title>`; 1S1A: hostname |
+| `ojapp:description` | 1P1A / 1S1A | Sets the Manifest install description | Standard page meta description; otherwise omitted |
 | `ojapp:icon` | 1P1A / 1S1A | Sets the app icon URL | Available page icon, then OJapp default icon |
+| `ojapp:screenshot` | 1P1A / 1S1A | Sets one install screenshot | Omitted |
+| `ojapp:screenshot-1` through `ojapp:screenshot-5` | 1P1A / 1S1A | Sets up to five install screenshots; the numbered set takes priority | Omitted |
 | `ojapp:query` | 1P1A / 1S1A | Set to `"true"` to include the current query in `id`, `start_url`, and `scope` | Disabled; query removed |
 | `ojapp:id` | 1S1A / 1G1A | Sets the Manifest app identity | Origin root |
 | `ojapp:start-url` | 1S1A / 1G1A | Sets the URL opened from the home screen | Origin root |
